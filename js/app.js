@@ -6,7 +6,7 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-}
+};
 
 var rowArray = [56, 139, 222]; // array of y values for each row of bugs
 // Update the enemy's position, required method for game
@@ -49,19 +49,19 @@ var Player =function(x,y){
 	this.sprite = 'images/char-boy.png';
 	this.x=x;
 	this.y=y;
-}
+};
 
 Player.prototype.update=function(dt){
 	this.checkCollisions();
 	if( this.y<20){
 		player.startOver();
 	}
-}
+};
 
 Player.prototype.render=function(){
 	//ctx.clearRect((this.sprite), this.x, this.y);
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Player.prototype.handleInput=function(code){
 	//we check to see which button is clicked so we fire respective
@@ -79,26 +79,28 @@ Player.prototype.handleInput=function(code){
     if (code == 'down' && this.y < 380){
         this.y = this.y + 83;}
 	
-}
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-allEnemies = [];
+var allEnemies = [];
 var enemy = new Enemy();
-allEnemies.push(enemy);
 enemy.x = -50;
 enemy.y = rowArray[0];
 enemy.speed = 1;
 var enemy2 = new Enemy();
-allEnemies.push(enemy2);
 enemy2.x = 250;
 enemy2.y = rowArray[1];
 enemy2.speed = 1;
 var enemy3 = new Enemy();
-allEnemies.push(enemy3);
 enemy3.x = -150;
 enemy3.y = rowArray[2];
 enemy3.speed = 1;
+
+for (var i = 0; i < 3; i++) {
+    allEnemies.push(new Enemy());
+}
+
 
 /*var allEnemies=[ new Enemy(0, 55, 150),
     new Enemy(0, 140, 250),
@@ -110,7 +112,7 @@ var player =  new Player(200,380);
 Player.prototype.startOver = function() {
     this.x = 200;
     this.y = 380;
-}
+};
 
 
 
@@ -125,7 +127,7 @@ Player.prototype.checkCollisions=function () {
                     player.startOver();
                 }
             });
-}
+};
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
