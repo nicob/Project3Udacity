@@ -1,6 +1,6 @@
-# Project3Udacity
-#This is a frogger style game.
-#HOW YOU PLAY
+Project3Udacity
+This is a frogger style game.
+HOW YOU PLAY
 
 Open index.html on your favorite browser
 
