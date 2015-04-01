@@ -10,7 +10,7 @@ Open index.html in your favorite browser.
 
 Use the arrows to move the boy.
 
-Your mission is to avoid the bugs and reach the sea (blue boxes on the top).
+Your mission is to avoid the bugs and reach the sea (blue boxes at the top).
 
 If a bug hits you, you start all over.
 
