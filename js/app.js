@@ -27,19 +27,19 @@ Enemy.prototype.update = function(dt) {
       this.speed = (Math.random() * (lowSpeed-highSpeed)+highSpeed);
 
     }
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
 	
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Enemy.prototype.init = function(){
     this.x = getRandomInt(-250, -100);
     //this.y = lines[randomLineIndex()];
     this.speed = getRandomInt(100, 250);
-}
+};
 
 
 // Now write your own player class
@@ -77,34 +77,24 @@ Player.prototype.handleInput=function(code){
 		ctx.clearRect((this.sprite), curx, cury);
 		}
     if (code == 'down' && this.y < 380){
-        this.y = this.y + 83;}
+        this.y = this.y + 83;
+		}
 	
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
-var enemy = new Enemy();
-enemy.x = -50;
-enemy.y = rowArray[0];
-enemy.speed = 1;
-var enemy2 = new Enemy();
-enemy2.x = 250;
-enemy2.y = rowArray[1];
-enemy2.speed = 1;
-var enemy3 = new Enemy();
-enemy3.x = -150;
-enemy3.y = rowArray[2];
-enemy3.speed = 1;
-
 for (var i = 0; i < 3; i++) {
-    allEnemies.push(new Enemy());
+	//alert('mesa');
+	var enemy = new Enemy();
+	allEnemies.push(enemy);
+	enemy.x = 250/i;
+	enemy.y = rowArray[i];
+	enemy.speed = 1;   
 }
 
 
-/*var allEnemies=[ new Enemy(0, 55, 150),
-    new Enemy(0, 140, 250),
-    new Enemy(0, 225, 100)];*/
 // Place the player object in a variable called player
 var player =  new Player(200,380);
 
