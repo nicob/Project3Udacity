@@ -74,7 +74,7 @@ Player.prototype.handleInput=function(code){
         this.x = this.x + 101;}
     if (code == 'up' && this.y >0){
         this.y = this.y - 83;
-		ctx.clearRect((this.sprite), curx, cury);
+		ctx.clearRect((this.sprite.x),(this.sprite.y), curx, cury);
 		}
     if (code == 'down' && this.y < 380){
         this.y = this.y + 83;
