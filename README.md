@@ -1,5 +1,4 @@
- Frogger
- =======
+<h1>Frogger</h1>
 
 
 This is a frogger style game.
