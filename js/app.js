@@ -15,7 +15,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-	this.x += 230*this.speed * dt;
+	this.x += 230 * this.speed * dt;
 
     if (this.x > 500) { // bug goes off of canvas
       this.x = 0;
@@ -25,7 +25,6 @@ Enemy.prototype.update = function(dt) {
 	  var lowSpeed = 0.3; 
 	  var highSpeed = 0.9; 
       this.speed = (Math.random() * (lowSpeed-highSpeed)+highSpeed);
-
     }
 };
 
@@ -35,51 +34,62 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Enemy.prototype.init = function(){
-    this.x = getRandomInt(-250, -100);
-    //this.y = lines[randomLineIndex()];
-    this.speed = getRandomInt(100, 250);
-};
-
-
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player =function(x,y){
+var Player = function(x,y){
 	this.sprite = 'images/char-boy.png';
 	this.x=x;
 	this.y=y;
 };
 
-Player.prototype.update=function(dt){
+Player.prototype.update = function(dt){
 	this.checkCollisions();
 	if( this.y<20){
 		player.startOver();
 	}
 };
 
-Player.prototype.render=function(){
+Player.prototype.render = function(){
 	//ctx.clearRect((this.sprite), this.x, this.y);
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput=function(code){
+Player.prototype.handleInput = function(code){
 	//we check to see which button is clicked so we fire respective
 	//alert(code);
 	var curx=this.x;
 	var cury=this.y;
-	if (code == 'left' && this.x > 0){
-        this.x = this.x - 101;}
-    if (code == 'right' && this.x < 304){
+	
+	//I tried to use switch instead of multiple if statements, but cant figure out how to use multiple statements in a switch. For some reason it is not working
+	/*switch(code){
+		case 'left':
+		case this.x > 0:
+			this.x = this.x - 101;
+		case 'right':
+		case this.x < 334:
+			this.x = this.x + 101;
+		case 'up':
+		case this.y > 0:
+			this.y = this.y - 83;
+			ctx.clearRect((this.sprite.x),(this.sprite.y), curx, cury);
+		case 'down':
+		case this.y < 380:
+			this.y = this.y + 83;
+	}*/
+	
+	if (code === 'left' && this.x > 0){
+        this.x = this.x - 101;
+		}
+    if (code === 'right' && this.x < 304){
         this.x = this.x + 101;}
-    if (code == 'up' && this.y >0){
+    if (code === 'up' && this.y >0){
         this.y = this.y - 83;
 		ctx.clearRect((this.sprite.x),(this.sprite.y), curx, cury);
 		}
-    if (code == 'down' && this.y < 380){
+    if (code === 'down' && this.y < 380){
         this.y = this.y + 83;
 		}
-	
 };
 
 // Now instantiate your objects.
@@ -88,10 +98,10 @@ var allEnemies = [];
 for (var i = 0; i < 3; i++) {
 	//alert('mesa');
 	var enemy = new Enemy();
-	allEnemies.push(enemy);
 	enemy.x = 250/i;
 	enemy.y = rowArray[i];
-	enemy.speed = 1;   
+	enemy.speed = 1;
+	allEnemies.push(enemy);
 }
 
 
@@ -104,30 +114,26 @@ Player.prototype.startOver = function() {
     this.y = 380;
 };
 
-
-
-
 // We check collisions
-Player.prototype.checkCollisions=function () {
+Player.prototype.checkCollisions = function () {
     allEnemies.forEach(function(enemy) {
-             if(enemy.x < player.x + 50 &&
-                enemy.x + 50 > player.x &&
-                enemy.y < player.y + 50 &&
-                enemy.y + 50 > player.y) {
-                    player.startOver();
-                }
-            });
+		if(enemy.x < player.x + 50 &&
+		enemy.x + 50 > player.x &&
+        enemy.y < player.y + 50 &&
+        enemy.y + 50 > player.y) {
+			player.startOver();
+			}
+		});
 };
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
-        37: 'left',
+		37: 'left',
         38: 'up',
         39: 'right',
         40: 'down'
     };
-
     player.handleInput(allowedKeys[e.keyCode]);
 });
